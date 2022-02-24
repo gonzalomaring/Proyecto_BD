@@ -1,32 +1,31 @@
-CREATE TABLE departamentos(
-    deptno decimal(11),
-    dname varchar(20),
-    localizacion varchar(20),
-    PRIMARY KEY (deptno)
+CREATE TABLE provincias(
+    provno decimal(4),
+    provname varchar(20),
+    comunidad_autonoma varchar(20),
+    PRIMARY KEY (provno)
 );
 
-INSERT INTO departamentos VALUES (1,"Marketing","Dos Hermanas");
-INSERT INTO departamentos VALUES (2,"Contabilidad","Alcalá de Guadaíra");
-INSERT INTO departamentos VALUES (3,"Recursos humanos","Madrid");
-INSERT INTO departamentos VALUES (4,"Compras","Dos Hermanas");
+INSERT INTO provincias VALUES (1,"Sevilla","Andalucía");
+INSERT INTO provincias VALUES (2,"Málaga","Andalucía");
+INSERT INTO provincias VALUES (3,"Barcelona","Cataluña");
+INSERT INTO provincias VALUES (4,"Bilbao","País Vasco");
 
-CREATE TABLE empleados(
-    empno decimal(11),
-    nombre varchar(20),
-    puesto varchar(20),
-    ano_alta varchar(4),
-    salario decimal(11),
-    deptno decimal(11),
-    PRIMARY KEY (empno),
-    CONSTRAINT fk_dpto
-    FOREIGN KEY(deptno)
-    REFERENCES departamentos(deptno)
+CREATE TABLE localidades(
+    locno decimal(4),
+    nombre varchar(40),
+    ciudadanos decimal(7),
+    cp decimal(5),
+    provno decimal(4),
+    PRIMARY KEY (locno),
+    CONSTRAINT fk_provno
+    FOREIGN KEY(provno)
+    REFERENCES provincias(provno)
 );
 
-INSERT INTO empleados VALUES (1,"Francisco","Editor","2018","1200",1);
-INSERT INTO empleados VALUES (2,"Manuel","Encargado","2010","1800",1);
-INSERT INTO empleados VALUES (3,"Gonzalo","Contable","2017","1100",2);
-INSERT INTO empleados VALUES (4,"Alfonso","Contable","2022","1100",2);
-INSERT INTO empleados VALUES (5,"Fabio","Encargado","2021","1900",3);
-INSERT INTO empleados VALUES (6,"Fernando","Gerente","2010","2100",4);
-INSERT INTO empleados VALUES (7,"Felipe","Secretario","2018","1100",4);
+INSERT INTO localidades VALUES (1,"Dos Hermanas",100000,41702,1);
+INSERT INTO localidades VALUES (2,"Alcalá de Guadaíra",65000,41500,1);
+INSERT INTO localidades VALUES (3,"Marbella",141000,29600,2);
+INSERT INTO localidades VALUES (4,"Torremolinos",68000,29620,2);
+INSERT INTO localidades VALUES (5,"Terrassa",218000,08221,3);
+INSERT INTO localidades VALUES (6,"San Sebastián",186000,20001,4);
+INSERT INTO localidades VALUES (7,"Santander",172000,39001,4);
