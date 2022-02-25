@@ -1,3 +1,17 @@
+--Creo el usuario y le doy permisos:
+useradd proyectobd -s /bin/bash -m -G gonzalo
+passwd proyectobd
+mysql -u root -p
+
+GRANT ALL PRIVILEGES ON *.* TO 'proyectobd'@'localhost'
+IDENTIFIED BY 'proyectobd' WITH GRANT OPTION;
+
+--Creo la base de datos y accedo a ella:
+mysql -u proyectobd -p
+create database provinciasbd;
+use provinciasbd;
+
+
 CREATE TABLE provincias(
     provno decimal(4),
     provname varchar(20),
