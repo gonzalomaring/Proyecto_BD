@@ -2,14 +2,10 @@
 useradd proyectobd -s /bin/bash -m -G gonzalo
 passwd proyectobd
 mysql -u root -p
-
-GRANT ALL PRIVILEGES ON *.* TO 'proyectobd'@'localhost'
-IDENTIFIED BY 'proyectobd' WITH GRANT OPTION;
-
---Creo la base de datos y accedo a ella:
-mysql -u proyectobd -p
 create database provinciasbd;
-use provinciasbd;
+
+GRANT ALL PRIVILEGES ON provinciasbd.* TO 'proyectobd'@'localhost'
+IDENTIFIED BY 'proyectobd' WITH GRANT OPTION;
 
 
 CREATE TABLE provincias(
