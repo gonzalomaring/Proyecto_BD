@@ -1,5 +1,15 @@
+--Creo el usuario y le doy permisos:
+useradd proyectobd -s /bin/bash -m -G gonzalo
+passwd proyectobd
+mysql -u root -p
+create database provinciasbd;
+
+GRANT ALL PRIVILEGES ON provinciasbd.* TO 'proyectobd'@'localhost'
+IDENTIFIED BY 'proyectobd' WITH GRANT OPTION;
+
+
 CREATE TABLE provincias(
-    provno decimal(4),
+    provno int(4) AUTO_INCREMENT,
     provname varchar(20),
     comunidad_autonoma varchar(20),
     PRIMARY KEY (provno)
@@ -11,15 +21,15 @@ INSERT INTO provincias VALUES (3,"Barcelona","Cataluña");
 INSERT INTO provincias VALUES (4,"Bilbao","País Vasco");
 
 CREATE TABLE localidades(
-    locno decimal(4),
+    locno int(4) AUTO_INCREMENT,
     nombre varchar(40),
     ciudadanos decimal(7),
     cp decimal(5),
-    provno decimal(4),
+    provno int(4),
     PRIMARY KEY (locno),
     CONSTRAINT fk_provno
     FOREIGN KEY(provno)
-    REFERENCES provincias(provno)
+    REFERENCES provincias(provno) ON DELETE CASCADE
 );
 
 INSERT INTO localidades VALUES (1,"Dos Hermanas",100000,41702,1);
