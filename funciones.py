@@ -1,4 +1,3 @@
-from ast import Num
 import sys
 import MySQLdb
 
